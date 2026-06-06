@@ -526,6 +526,29 @@ section { padding: 88px 0; }
   padding-bottom: 8px; border-bottom: 1px solid var(--border);
 }
 .legal-body h2:first-child { margin-top: 0; }
+.legal-body h3 {
+  font-family: var(--f-d);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.legal-section-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin: 3rem 0 2rem;
+}
+.legal-section-divider::before,
+.legal-section-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.legal-section-divider span {
+  font-family: var(--f-d);
+  font-size: 1rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--blue-l);
+  white-space: nowrap;
+}
 .legal-body p, .legal-body li {
   font-size: 0.88rem; font-weight: 300; color: var(--muted);
   line-height: 1.85; margin-bottom: 0.7rem;
@@ -540,6 +563,59 @@ section { padding: 88px 0; }
   padding: 18px 22px; margin-bottom: 2rem;
 }
 .legal-notice p { margin: 0; }
+
+/* ── HISTORY PAGE ───────────────────────────────── */
+.history-milestones {
+  background: var(--blue);
+  padding: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.milestone-row {
+  display: flex; flex-wrap: wrap;
+  gap: 1px; background: rgba(255,255,255,0.1);
+}
+.milestone {
+  flex: 1; min-width: 120px;
+  background: var(--blue);
+  padding: 22px 28px;
+  text-align: center;
+  transition: background var(--t);
+}
+.milestone:hover { background: var(--blue-l); }
+.milestone-year {
+  font-family: var(--f-d);
+  font-size: 2rem; color: var(--white); line-height: 1;
+}
+.milestone-label {
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6); margin-top: 4px;
+}
+
+.history-wrap { background: var(--black); padding: 72px 0; }
+.history-body { max-width: 820px; }
+.history-body h2 {
+  font-family: var(--f-d); font-size: 1.35rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--white);
+  margin-bottom: 1.2rem;
+  padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+.history-body h3 {
+  font-family: var(--f-d); font-size: 0.9rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-top: 2.4rem; margin-bottom: 0.6rem;
+}
+.history-body p {
+  font-size: 0.9rem; font-weight: 300;
+  color: var(--muted); line-height: 1.9; margin-bottom: 0.9rem;
+}
+.history-body p strong { color: var(--light); font-weight: 500; }
+
+.history-cta {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-top: 3rem; padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
 
 /* ── ANIMATIONS ─────────────────────────────────── */
 @keyframes fadeUp {
