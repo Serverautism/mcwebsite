@@ -87,7 +87,7 @@ img { max-width: 100%; display: block; }
   transition: color var(--t); position: relative;
 }
 .nav-link:hover, .nav-link.active { color: var(--white) !important; }
-.nav-link.active::after {
+.nav-link.active:not(.dropdown-toggle)::after {
   content: ''; position: absolute;
   bottom: 0; left: 0.9rem; right: 0.9rem;
   height: 2px; background: var(--gold);
@@ -735,6 +735,7 @@ section { padding: 88px 0; }
   border: 1px solid rgba(200,168,75,0.2);
   padding: 3px 10px;
   white-space: nowrap;
+  width: 160px; text-align: center; flex-shrink: 0;
 }
 .honor-item--gold .honor-name { color: var(--gold); }
 
