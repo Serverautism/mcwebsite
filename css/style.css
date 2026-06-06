@@ -392,6 +392,27 @@ section { padding: 88px 0; }
 }
 .event-row:hover .event-badge { border-color: var(--gold); color: var(--gold); }
 
+.event-placeholder-notice {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--panel);
+  border-left: 3px solid var(--gold);
+  padding: 12px 20px; margin-top: 32px; margin-bottom: -1px;
+  font-size: 0.76rem; font-weight: 400;
+  letter-spacing: 0.06em; color: var(--gold);
+}
+.event-placeholder-notice i { font-size: 0.9rem; flex-shrink: 0; }
+
+.event-badge-tbd {
+  border-color: rgba(200,168,75,0.25) !important;
+  color: rgba(200,168,75,0.5) !important;
+}
+.event-row:hover .event-badge-tbd {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+}
+
+.event-date-num { font-variant-numeric: tabular-nums; }
+
 /* ── CONTACT ────────────────────────────────────── */
 .contact-section { background: var(--black); }
 
