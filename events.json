@@ -1,0 +1,69 @@
+[
+  {
+    "_anleitung": true,
+    "info": "Neues Event: Block eines bestehenden Events kopieren, ans Ende des Arrays einfügen (direkt vor die schließende ]) und Werte anpassen.",
+    "felder": {
+      "id":           "Eindeutige ID, Kleinbuchstaben mit Bindestrichen  →  z.B. 'rallye-wartburg-2027'",
+      "titel":        "Anzeigename des Events",
+      "datum_iso":    "Konkretes Datum 'JJJJ-MM-TT' (z.B. '2026-05-29')  ODER  null wenn kein Termin feststeht",
+      "datum_monat":  "Nur bei datum_iso=null: Monats- oder Jahreszeit + Jahr  →  z.B. 'Mai 2026', 'Frühjahr 2026', 'Sommer 2026'",
+      "ort":          "Veranstaltungsort als Freitext",
+      "beschreibung": "Kurzbeschreibung für die Eventplan-Seite (1–2 Sätze)",
+      "status":       "'tbd' = Termin folgt  |  'offen' = Anmeldung offen  |  'bestätigt' = Bestätigt"
+    }
+  },
+  {
+    "id": "rallye-wartburg-2026",
+    "titel": "61. Rallye Wartburg",
+    "datum_iso": null,
+    "datum_monat": "Frühjahr 2026",
+    "ort": "Eisenach, Thüringen",
+    "beschreibung": "Das Herzstück der Clubarbeit: die traditionsreiche RSC-Rallye Wartburg zählt zu den bedeutendsten Rallye-Veranstaltungen Deutschlands. Mitfiebern, anfeuern oder als Streckenposten mithelfen – die Rallye Wartburg lebt vom Einsatz aller.",
+    "status": "tbd"
+  },
+  {
+    "id": "kart-slalom-2026",
+    "titel": "Jugend-Kart-Slalom",
+    "datum_iso": null,
+    "datum_monat": "Sommer 2026",
+    "ort": "Sportpark Katzenaue, Eisenach",
+    "beschreibung": "Der ADAC Jugend-Kart-Slalom bietet Nachwuchsfahrern die Möglichkeit, sich im Wettkampf zu messen. Klassen für verschiedene Altersgruppen sorgen für faire Bedingungen und spannende Rennen auf engstem Raum.",
+    "status": "tbd"
+  },
+  {
+    "id": "automobil-slalom-2026",
+    "titel": "Automobilslalom",
+    "datum_iso": null,
+    "datum_monat": "Sommer 2026",
+    "ort": "Flugplatz Eisenach-Kindel",
+    "beschreibung": "Auf dem Flugplatzgelände Eisenach-Kindel wird Präzision und Schnelligkeit auf Asphalt gefordert. Der Automobilslalom gilt als Lauf zur ADAC-Slalom-Meisterschaft Hessen-Thüringen und zieht Teilnehmer aus der gesamten Region an.",
+    "status": "tbd"
+  },
+  {
+    "id": "oldtimer-ausfahrt-2026",
+    "titel": "Oldtimer-Ausfahrt Wartburgregion",
+    "datum_iso": null,
+    "datum_monat": "Herbst 2026",
+    "ort": "Eisenach & Umgebung",
+    "beschreibung": "Eine gemütliche Ausfahrt durch die malerische Wartburgregion mit historischen Fahrzeugen. Für Oldtimerfreunde und Motorsportfans gleichermaßen ein Highlight im Herbstprogramm des Clubs.",
+    "status": "tbd"
+  },
+  {
+    "id": "jahreshauptversammlung-2026",
+    "titel": "Jahreshauptversammlung & Siegerehrung",
+    "datum_iso": null,
+    "datum_monat": "Herbst 2026",
+    "ort": "Vereinsheim, Eisenach",
+    "beschreibung": "Abschluss der Motorsportsaison: Die Jahreshauptversammlung bringt alle Mitglieder zusammen. Mit feierlicher Siegerehrung, Rückblick auf das vergangene Sportjahr und Ausblick auf die kommende Saison.",
+    "status": "tbd"
+  },
+  {
+    "id": "testevent-2026",
+    "titel": "testevent & neue website",
+    "datum_iso": "2026-05-29",
+    "datum_monat": "Herbst 2026",
+    "ort": "Vereinsheim, Eisenach",
+    "beschreibung": "Das ist ein Beipieltext, welcher Informationen zu dem Event liefert.",
+    "status": "bestätigt"
+  }
+]

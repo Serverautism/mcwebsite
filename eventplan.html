@@ -75,19 +75,19 @@
         an den Vorstand, um keine Neuigkeiten zu verpassen.
       </p>
 
-      <div class="event-placeholder-notice">
+      <div class="event-placeholder-notice" id="events-plan-notice">
         <i class="bi bi-info-circle-fill"></i>
         Alle Angaben sind vorläufig – aktuelle Termine und Details werden in Kürze veröffentlicht.
       </div>
 
-      <div class="event-list" style="margin-top:0;">
+      <div class="event-list" id="events-plan-list" style="margin-top:0;">
         <div class="event-row">
           <div>
             <div class="event-date-num">––</div>
             <div class="event-date-mo">Frühjahr</div>
           </div>
           <div>
-            <div class="event-title">Rallye Wartburg</div>
+            <div class="event-title">61. Rallye Wartburg</div>
             <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Eisenach, Thüringen</div>
             <p style="font-size:0.82rem;font-weight:300;color:var(--muted);margin-top:8px;margin-bottom:0;line-height:1.7;">
               Das Herzstück der Clubarbeit: die traditionsreiche RSC-Rallye Wartburg zählt zu den
@@ -104,7 +104,7 @@
           </div>
           <div>
             <div class="event-title">Jugend-Kart-Slalom</div>
-            <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Eisenach</div>
+            <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Sportpark Katzenaue, Eisenach</div>
             <p style="font-size:0.82rem;font-weight:300;color:var(--muted);margin-top:8px;margin-bottom:0;line-height:1.7;">
               Der ADAC Jugend-Kart-Slalom bietet Nachwuchsfahrern die Möglichkeit, sich im
               Wettkampf zu messen. Klassen für verschiedene Altersgruppen sorgen für faire
@@ -223,5 +223,43 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function() {
+    var list = document.getElementById('events-plan-list');
+    var notice = document.getElementById('events-plan-notice');
+    if (!list) return;
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    var mo = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    fetch('events.json').then(function(r){return r.json();}).then(function(events){
+      events = events.filter(function(e){return !e._anleitung;});
+      if (!events.length) return;
+      if (notice && events.every(function(e){return e.status!=='tbd';})) notice.style.display='none';
+      list.innerHTML = events.map(function(e){
+        var dateHtml;
+        if (e.datum_iso) {
+          var d = new Date(e.datum_iso);
+          dateHtml = '<div class="event-date-num">'+d.getDate()+'</div>'
+            +'<div class="event-date-mo">'+mo[d.getMonth()]+'</div>';
+        } else {
+          var parts = esc(e.datum_monat||'TBD').split(' ');
+          var label = parts.slice(0,-1).join(' ') || parts[0];
+          var year  = parts.length > 1 ? parts[parts.length-1] : '';
+          dateHtml = '<div class="event-date-num" style="font-size:1.35rem;">'+label+'</div>'
+            +(year ? '<div class="event-date-mo">'+year+'</div>' : '');
+        }
+        var badge = e.status==='tbd' ? '<span class="event-badge event-badge-tbd">Termin folgt</span>'
+          : e.status==='offen' ? '<span class="event-badge">Anmeldung offen</span>'
+          : '<span class="event-badge">Bestätigt</span>';
+        var desc = e.beschreibung
+          ? '<p style="font-size:0.82rem;font-weight:300;color:var(--muted);margin-top:8px;margin-bottom:0;line-height:1.7;">'+esc(e.beschreibung)+'</p>'
+          : '';
+        return '<div class="event-row"><div>'+dateHtml+'</div><div>'
+          +'<div class="event-title">'+esc(e.titel)+'</div>'
+          +'<div class="event-loc"><i class="bi bi-geo-alt-fill"></i>'+esc(e.ort)+'</div>'
+          +desc+'</div>'+badge+'</div>';
+      }).join('');
+    });
+  })();
+</script>
 </body>
 </html>

@@ -232,18 +232,18 @@
         </p>
       </div>
     </div>
-    <div class="event-placeholder-notice">
+    <div class="event-placeholder-notice" id="events-notice">
       <i class="bi bi-info-circle-fill"></i>
-      Beispieltermine – aktuelle Daten und Details werden in Kürze veröffentlicht. Alle Infos auf der <a href="events.html" style="color:var(--gold);text-decoration:underline;">Eventseite</a>.
+      Termine werden aktuell abgestimmt – alle Details folgen in Kürze. Vollständiger Kalender auf der <a href="eventplan.html" style="color:var(--gold);text-decoration:underline;">Eventplan-Seite</a>.
     </div>
-    <div class="event-list">
+    <div class="event-list" id="events-index-list">
       <div class="event-row">
         <div>
           <div class="event-date-num">––</div>
           <div class="event-date-mo">Frühjahr</div>
         </div>
         <div>
-          <div class="event-title">Rallye Wartburg</div>
+          <div class="event-title">61. Rallye Wartburg</div>
           <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Eisenach, Thüringen</div>
         </div>
         <span class="event-badge event-badge-tbd">Termin folgt</span>
@@ -255,7 +255,7 @@
         </div>
         <div>
           <div class="event-title">Jugend-Kart-Slalom</div>
-          <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Eisenach</div>
+          <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Sportpark Katzenaue, Eisenach</div>
         </div>
         <span class="event-badge event-badge-tbd">Termin folgt</span>
       </div>
@@ -266,7 +266,7 @@
         </div>
         <div>
           <div class="event-title">Automobilslalom</div>
-          <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Eisenach</div>
+          <div class="event-loc"><i class="bi bi-geo-alt-fill"></i>Flugplatz Eisenach-Kindel</div>
         </div>
         <span class="event-badge event-badge-tbd">Termin folgt</span>
       </div>
@@ -372,6 +372,41 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function() {
+    var list = document.getElementById('events-index-list');
+    var notice = document.getElementById('events-notice');
+    if (!list) return;
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    var mo = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    fetch('events.json').then(function(r){return r.json();}).then(function(events){
+      events = events.filter(function(e){return !e._anleitung;});
+      if (!events.length) return;
+      if (notice && events.every(function(e){return e.status!=='tbd';})) notice.style.display='none';
+      list.innerHTML = events.map(function(e){
+        var dateHtml;
+        if (e.datum_iso) {
+          var d = new Date(e.datum_iso);
+          dateHtml = '<div class="event-date-num">'+d.getDate()+'</div>'
+            +'<div class="event-date-mo">'+mo[d.getMonth()]+'</div>';
+        } else {
+          var parts = esc(e.datum_monat||'TBD').split(' ');
+          var label = parts.slice(0,-1).join(' ') || parts[0];
+          var year  = parts.length > 1 ? parts[parts.length-1] : '';
+          dateHtml = '<div class="event-date-num" style="font-size:1.35rem;">'+label+'</div>'
+            +(year ? '<div class="event-date-mo">'+year+'</div>' : '');
+        }
+        var badge = e.status==='tbd' ? '<span class="event-badge event-badge-tbd">Termin folgt</span>'
+          : e.status==='offen' ? '<span class="event-badge">Anmeldung offen</span>'
+          : '<span class="event-badge">Bestätigt</span>';
+        return '<div class="event-row"><div>'+dateHtml+'</div><div>'
+          +'<div class="event-title">'+esc(e.titel)+'</div>'
+          +'<div class="event-loc"><i class="bi bi-geo-alt-fill"></i>'+esc(e.ort)+'</div>'
+          +'</div>'+badge+'</div>';
+      }).join('');
+    });
+  })();
+</script>
 <script>
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
