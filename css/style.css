@@ -145,7 +145,7 @@ img { max-width: 100%; display: block; }
 .hero-logo-img {
   position: absolute; top: 40px; right: 40px;
   height: 140px; width: auto;
-  opacity: 0.18;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -276,7 +276,7 @@ section { padding: 88px 0; }
 }
 .about-img-logo {
   position: relative; z-index: 2;
-  width: 72%; max-width: 340px;
+  width: 95%; max-width: 450px;
   opacity: 0.9;
   filter: drop-shadow(0 4px 24px rgba(0,0,0,0.8));
 }
